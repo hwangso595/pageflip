@@ -19,7 +19,6 @@ router.get('/', async (req, res, next) => {
     }
     try {
         const books = await query.exec();
-        console.log(books);
         res.render('books/index', {
             books: books,
             searchOptions: req.query
@@ -52,7 +51,6 @@ router.post('/', async (req, res, next) => {
         res.redirect('/books');
 
     } catch (error) {
-        console.log(error);
         renderNewPage(res, book, true);
     }
     
