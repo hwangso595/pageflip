@@ -10,7 +10,7 @@ router.get('/', async (req, res, next) => {
         searchOptions.name = new RegExp(req.query.name, 'i');
     }
     try {
-        const authors = await Author.find(searchOptionsz);
+        const authors = await Author.find(searchOptions);
         res.render('authors/index', { 
             authors: authors,
             searchOptions: req.query
