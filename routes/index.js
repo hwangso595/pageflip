@@ -9,7 +9,6 @@ router.get('/', async (req, res, next) => {
     } catch {
         books = [];
     }
-    console.log(books);
     res.render('index', { books: books });
 });
 
