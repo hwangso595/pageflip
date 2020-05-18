@@ -50,7 +50,8 @@ router.post('/', async (req, res, next) => {
         res.redirect(`/books/${newBook.id}`);
 
     } catch (error) {
-        renderFormPage(res, book, 'new', true);
+        console.log(error);
+        renderNewPage(res, book, true);
     }
     
 });
@@ -89,7 +90,7 @@ router.put('/:id', async (req, res) => {
         book.description = req.body.description;
 
         if (req.body.cover != null && req.body.cover !== '') {
-            saveCover(book, req.body.cover);z
+            saveCover(book, req.body.cover);
         }
 
         await book.save();
@@ -131,7 +132,7 @@ async function renderFormPage(res, book, form, hasError = false) {
             authors: authors,
             book: book
         }
-        if (hasError) params.errorMessage = 'Error Editing Book';
+        if (hasError) params.errorMessage = 'Error '+(form == 'edit'? 'Editing' : 'Creating')+' Book';
         res.render(`books/${form}`, params);
 
     } catch {
